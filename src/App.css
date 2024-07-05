@@ -1,0 +1,70 @@
+body {
+  justify-content: center;
+  background-color: #21114f;
+}
+#root {
+  width: 90%;
+}
+#homepage {
+  background-image: url("https://img.freepik.com/vettori-premium/cartoon-prato-paesaggio-estate-campi-verdi-vista-primavera-prato-collina-e-cielo-blu-erba-verde_313905-666.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  min-height: 80vh;
+  text-align: center;
+  border-radius: 30px;
+  box-shadow: 0px 16px 22px 9px rgba(0, 0, 0, 0.72);
+}
+#homepage h3 {
+  font-size: 50px;
+  padding-top: 1em;
+}
+
+#homepage div {
+  font-size: 130px;
+  font-weight: bold;
+}
+#homeCard {
+  background: rgb(192, 67, 127);
+  background: radial-gradient(
+    circle,
+    rgba(192, 67, 127, 1) 9%,
+    rgba(55, 21, 112, 1) 78%
+  );
+
+  display: flex;
+  justify-content: space-around;
+  margin-top: 2em;
+}
+.card-text {
+  background: rgb(45, 110, 212);
+  background: radial-gradient(
+    circle,
+    rgba(45, 110, 212, 1) 9%,
+    rgba(33, 17, 79, 1) 78%
+  );
+  padding: 3rem;
+  border-radius: 30px;
+  min-height: 5rem;
+}
+.card-text h1 {
+  color: white;
+  font-size: 25px;
+  font-weight: bold;
+}
+.card-text div {
+  text-align: center;
+  color: white;
+  opacity: 0.5;
+}
+.card-body {
+  padding: 1rem;
+}
+.form-label {
+  text-align: center;
+  padding-top: 1em;
+  margin-bottom: -30px;
+}
+.form-control {
+  width: 30em;
+}
