@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Card, CardBody, CardText } from "react-bootstrap";
+import { useState } from "react";
+import { Card, CardBody, CardText, Col, Container, Row } from "react-bootstrap";
 import Search from "./Search";
 
 const Homepage = () => {
@@ -9,7 +9,7 @@ const Homepage = () => {
   const fetchWeatherData = async (location) => {
     try {
       const geoResponse = await fetch(
-        `https://api.openweathermap.org/geo/1.0/direct?q=${location}&limit=1&appid=6da7eee9a45c0d2282620aa60ef43b5e`
+        `https://api.openweathermap.org/geo/1.0/direct?q=${location}&limit=10&appid=6da7eee9a45c0d2282620aa60ef43b5e`
       );
       const geoData = await geoResponse.json();
 
@@ -31,14 +31,14 @@ const Homepage = () => {
       );
       const previsioniData = await previsioniResponse.json();
 
-      setPrevisioniData(previsioniData.list.slice(1, 5));
+      setPrevisioniData(previsioniData.list.slice(1, 7));
     } catch (error) {
       console.error("Errore durante il recupero dei dati:", error);
     }
   };
 
   return (
-    <>
+    <Container>
       <Search onSearch={fetchWeatherData} />
       {weatherData && (
         <div id="homepage">
@@ -47,21 +47,26 @@ const Homepage = () => {
           <h2>{weatherData.city}</h2>
         </div>
       )}
-      <div id="homeCard">
+
+      <Row id="homeCard">
         {previsioniData.map((previsione, index) => (
-          <Card key={index}>
-            <CardBody>
-              <CardText>
-                <div>{new Date(previsione.dt * 1000).toLocaleDateString()}</div>
-                <h1>{new Date(previsione.dt * 1000).getHours()}:00</h1>
-                <div>{previsione.weather[0].main}</div>
-                <div>{Math.round(previsione.main.temp)}°C</div>
-              </CardText>
-            </CardBody>
-          </Card>
+          <Col key={index}>
+            <Card>
+              <CardBody>
+                <CardText>
+                  <div className="opacity-50">
+                    {new Date(previsione.dt * 1000).toLocaleDateString()}
+                  </div>
+                  <h1>{new Date(previsione.dt * 1000).getHours()}:00</h1>
+                  <div className="opacity-50">{previsione.weather[0].main}</div>
+                  <div>{Math.round(previsione.main.temp)}°C</div>
+                </CardText>
+              </CardBody>
+            </Card>
+          </Col>
         ))}
-      </div>
-    </>
+      </Row>
+    </Container>
   );
 };
 
