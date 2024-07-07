@@ -42,12 +42,16 @@ body {
   background-color: #255bd7;
   color: white;
 }
+.cardInfo:hover {
+  transform: scale(1.3);
+}
 .nextHour {
   font-size: 50px;
   rotate: -3deg;
+  background-color: #d6f94d;
 }
 
-#homeCard {
+/* #homeCard {
   border-radius: 30px;
   background: rgb(192, 67, 127);
   background: radial-gradient(
@@ -84,7 +88,21 @@ body {
 }
 .card-body {
   padding: 1rem;
+} */
+.cardStyle {
+  background-color: transparent;
+  border: none;
+  color: white;
+  text-align: center;
 }
+
+.cardStyle:hover {
+  transform: scale(1.05);
+  background-color: #d6f94d;
+  border: solid 1px white;
+  color: black;
+}
+
 .form-label {
   text-align: center;
   padding-top: 1em;
@@ -94,4 +112,7 @@ body {
 }
 .form-control {
   width: 30em;
+}
+.buttonCity {
+  background-color: #d6f94d;
 }

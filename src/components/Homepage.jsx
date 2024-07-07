@@ -1,13 +1,5 @@
 import { useState } from "react";
-import {
-  Badge,
-  Card,
-  CardBody,
-  CardText,
-  Col,
-  Container,
-  Row,
-} from "react-bootstrap";
+import { Card, CardBody, CardText, Col, Container, Row } from "react-bootstrap";
 import Search from "./Search";
 
 const Homepage = () => {
@@ -55,9 +47,9 @@ const Homepage = () => {
       <Search onSearch={fetchWeatherData} />
       {weatherData && (
         <div id="homepage">
-          <div>
+          <div className="pb-5">
             <div className="d-flex justify-content-end">
-              <div className="btn btn-warning d-flex rounded-pill py-3 px-5">
+              <div className=" d-flex rounded-pill py-3 px-5 buttonCity">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="ionicon"
@@ -78,7 +70,7 @@ const Homepage = () => {
                 </div>
               </div>
             </div>
-            <div className="text-white d-flex justify-content-center ">
+            <div className="text-white d-flex justify-content-center mt-5 ">
               <div className="position-relative temperatura">
                 {weatherData.temperature}
                 <span className="position-absolute">°</span>
@@ -210,12 +202,38 @@ const Homepage = () => {
             </section>
           </div>
           <article className="d-flex justify-content-center mt-5">
-            <div className="btn btn-warning nextHour">Next Hours</div>
+            <div className="rounded-3 nextHour">Next Hours</div>
           </article>
+          <section id="previsioni">
+            <Row className="mt-5">
+              {previsioniData.map((previsione, index) => (
+                <Col key={index}>
+                  <Card className="cardStyle rounded-pill">
+                    <CardBody>
+                      <CardText>
+                        <div className="opacity-50">
+                          {new Date(previsione.dt * 1000).toLocaleDateString()}
+                        </div>
+                        <h1 className="fs-3">
+                          {new Date(previsione.dt * 1000).getHours()}:00
+                        </h1>
+                        <div className="opacity-50">
+                          {previsione.weather[0].main}
+                        </div>
+                        <div className="fs-2">
+                          {Math.round(previsione.main.temp)}°C
+                        </div>
+                      </CardText>
+                    </CardBody>
+                  </Card>
+                </Col>
+              ))}
+            </Row>
+          </section>
         </div>
       )}
 
-      <Row id="homeCard">
+      {/* <Row id="homeCard">
         {previsioniData.map((previsione, index) => (
           <Col key={index}>
             <Card>
@@ -232,7 +250,7 @@ const Homepage = () => {
             </Card>
           </Col>
         ))}
-      </Row>
+      </Row> */}
     </Container>
   );
 };
