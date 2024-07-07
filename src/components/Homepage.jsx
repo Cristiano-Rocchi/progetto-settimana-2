@@ -21,9 +21,13 @@ const Homepage = () => {
       const weatherData = await weatherResponse.json();
 
       setWeatherData({
-        temperature: Math.round(weatherData.main.temp).toFixed(0),
+        temperature: Math.round(weatherData.main.temp),
         city: name,
         date: new Date().toLocaleDateString(),
+        minima: Math.round(weatherData.main.temp_min),
+        massima: Math.round(weatherData.main.temp_max),
+        umidita: Math.round(weatherData.main.humidity),
+        vento: weatherData.wind.speed,
       });
 
       const previsioniResponse = await fetch(
@@ -41,11 +45,24 @@ const Homepage = () => {
     <Container>
       <Search onSearch={fetchWeatherData} />
       {weatherData && (
-        <div id="homepage">
-          <h3>{weatherData.date}</h3>
-          <div>{weatherData.temperature}°C</div>
-          <h2>{weatherData.city}</h2>
-        </div>
+        <Row id="homepage" className="d-block">
+          <Col>
+            <h3>{weatherData.date}</h3>
+            <div>{weatherData.temperature}°C</div>
+            <h2>{weatherData.city}</h2>
+          </Col>
+          <Row>
+            <h3 className="text-start fs-3">INFORMAZIONI UTILI:</h3>
+            <Col>
+              <div className=" text-start">
+                <p className="fs-4">Min: {weatherData.minima} C°</p>
+                <p className="fs-4">Max: {weatherData.massima} C°</p>
+                <div className="fs-4">Umidita: {weatherData.umidita}%</div>
+                <div className="fs-4">Vento: {weatherData.vento} km/h</div>
+              </div>
+            </Col>
+          </Row>
+        </Row>
       )}
 
       <Row id="homeCard">
